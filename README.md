@@ -35,25 +35,25 @@ For optimization, a grid search ([code](https://github.com/czarinagluna/vaccinat
 
 **Model Performance**
 
-![](data/images/fig4.png)
+![](data/images/fig5.png)
+
+Precision is important to the business problem because a false positive is more costly than a false negative. Predicting that an individual receives the vaccine but actually does not is worse than predicting that an individual does not receive the vaccine but actually does. To evaluate the success of predictions, precision measures how many are actually vaccinated out of all the people the model predicted to be vaccinated. 
 
 Tuned Models:
 
-![](data/images/fig3.png)
+![](data/images/fig4.png)
 
 ## Results and Recommendations
 
 Confusion Matrix:
 
-![](data/images/fig5.png)
-
-Precision is important to the business problem because a false positive is more costly than a false negative. Predicting that an individual receives the vaccine but actually does not is worse than predicting that an individual does not receive the vaccine but actually does. To evaluate the success of predictions, precision measures how many are actually vaccinated out of all the people the model predicted to be vaccinated. 
-
 ![](data/images/fig6.png)
+
+Write here.
 
 **Model Deployment**
 
-Finally, I deploy the Random Forest regression model ([demo](https://streamlit.io/)) as a prototype I develop for a client-facing application that serves as a Home Value Estimator.
+Finally, I deploy the Extra Trees model ([demo](https://streamlit.io/)) to demonstrate classification of vaccination status on new survey responses.
 
 ***
 SOURCE CODE: [Main Notebook](https://github.com/czarinagluna/vaccination-status-classification/blob/main/main.ipynb)
