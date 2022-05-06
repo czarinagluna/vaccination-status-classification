@@ -58,7 +58,7 @@ Comparing the confusion matrices of the baseline model and the final model, the 
 
 **Permutation Importances**
 
-> "Permutation importance does not reflect to the intrinsic predictive value of a feature by itself but **how important this feature is for a particular model**." ([Scikit-Learn Documentation](https://scikit-learn.org/stable/modules/permutation_importance.html))
+> "Permutation importance does not reflect to the intrinsic predictive value of a feature by itself but **how important this feature is for a particular model**." ([scikit-learn](https://scikit-learn.org/stable/modules/permutation_importance.html))
 
 ![](data/images/fig7.png)
 
