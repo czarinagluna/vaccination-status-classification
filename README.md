@@ -54,7 +54,7 @@ The tuned Extra Trees classifier's accuracy score on the `test_set` is 86%.
 
 ![](data/images/fig6.png)
 
-Comparing the confusion matrices of the baseline model and the final model, the false positive is reduced by half from 0.086 to 0.044 under the Extra Trees model.
+Comparing the confusion matrices of the baseline model and the final model, the false positive is reduced by half from 0.086 to 0.042 under the Extra Trees model.
 
 **Permutation Importances**
 
