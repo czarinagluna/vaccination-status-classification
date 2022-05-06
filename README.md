@@ -1,10 +1,10 @@
 # Vaccination Status Classification
 
-![header](data/images/gabriella-clare-marino-HeIz1OoAl-A-unsplash.jpg)
-
 ## Overview
 
-Write here.
+An analysis and classification modeling of over 25,000 survey responses is completed to guide public health efforts on vaccination outreach. The highest accuracy and precision of 86% and 75% respectively is attained by the Extra Trees model predicting H1N1 vaccination status. According to the permutation importances of the model, the top features that affect H1N1 vaccination status are seasonal flu vaccination status, direct recommendation from a doctor, and health insurance.
+
+![header](data/images/gabriella-clare-marino-HeIz1OoAl-A-unsplash.jpg)
 
 ## Business Problem
 
@@ -29,31 +29,50 @@ The features with the strongest correlation with H1N1 vaccination status are `do
 
 ## Classification Modeling
 
-Classification algorithms are used to predict the binary classes and evaluated using accuracy and precision. Precision is a useful metric in an imbalanced dataset, as accuracy only reflects the underlying class distribution. To address the class imbalance, random oversampling is done by randomly duplicating examples of the minority class `1` in the training set. 
+The classification models used are Logistic Regression, Decision Tree, Random Forests, Extra Trees, and Gradient Boost classifier. The class imbalance is addressed using random oversampling which randomly duplicates examples of the minority class `1` in the training set. To optimize the models, a grid search ([notebook](https://github.com/czarinagluna/vaccination-status-classification/blob/main/GridSearch.ipynb)) is performed to tune their hyperparameters. 
 
-For optimization, a grid search ([code](https://github.com/czarinagluna/vaccination-status-classification/blob/main/GridSearch.ipynb)) is implemented to tune the model hyperparameters.
+**Classification Metrics**
 
-**Model Performance**
+Accuracy only reflects the underlying class distribution in an imbalanced dataset. If a model predicts not vaccinated all the time, it is already 80% accurate. So other classification metrics are used to measure the success of predictions. 
 
-![](data/images/fig5.png)
+- Precision measures how many are actually vaccinated out of all the people predicted to be vaccinated
+- Recall measures how many are correctly predicted to be vaccinated out of all the total vaccinated people
 
-Precision is important to the business problem because a false positive is more costly than a false negative. Predicting that an individual receives the vaccine but actually does not is worse than predicting that an individual does not receive the vaccine but actually does. To evaluate the success of predictions, precision measures how many are actually vaccinated out of all the people the model predicted to be vaccinated. 
-
-Tuned Models:
+Precision-recall curve is plotted below to show the tradeoff between the two. The AUC score is the area under the ROC curve that is plotted, too. It measures the performance of models across all classification thresholds.
 
 ![](data/images/fig4.png)
 
+More specifically, precision is important to the business problem because a false positive is worse than a false negative, in this case. To predict that an individual receives the vaccine but actually does not is a bigger loss than to predict that an individual does not receive the vaccine but actually does—because the actually vaccinated individual *is vaccinated* but the indivual who is not vaccinated is **missed**. 
+
 ## Results and Recommendations
 
-Confusion Matrix:
+The **Tuned Extra Trees** has the highest cross validation score for accuracy at 96% and the highest precision score of 75% out of all the models. 
+
+![](data/images/fig5.png)
+
+The tuned Extra Trees classifier's accuracy score on the `test_set` is 86%.
 
 ![](data/images/fig6.png)
 
-Write here.
+Comparing the confusion matrices of the baseline model and the final model, the false positive is reduced by half from 0.086 to 0.044 under the Extra Trees model.
+
+**Permutation Importances**
+
+> "Permutation importance does not reflect to the intrinsic predictive value of a feature by itself but **how important this feature is for a particular model**." ([Scikit-Learn Documentation](https://scikit-learn.org/stable/modules/permutation_importance.html))
+
+![](data/images/fig7.png)
+
+The top features that affect H1N1 vaccination status on the final model are `seasonal_vaccine`, `doctor_recc_h1n1`, and `health_insurance`. 
+
+**Recommendations**
+
+- Direct efforts to individuals who receive the seasonal flu vaccine by providing information about and reminders to receive the H1N1 vaccine, too.
+- Coordinate with primary health care providers to educate and recommend the vaccine to patients.
+- Focus vaccination campaigns on a message that the vaccines are free and available for the uninsured.
 
 **Model Deployment**
 
-Finally, I deploy the Extra Trees model ([demo](https://streamlit.io/)) to demonstrate classification of vaccination status on new survey responses.
+Finally, I deploy the Extra Trees classifier model as an online survey to demonstrate the prediction of vaccination status after answering the questions.
 
 ***
 SOURCE CODE: [Main Notebook](https://github.com/czarinagluna/vaccination-status-classification/blob/main/main.ipynb)
